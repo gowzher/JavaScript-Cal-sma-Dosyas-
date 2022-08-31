@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Form</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+    <div id="alert"></div>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-sm-8 offset-sm-2">
+                <h1>Form</h1>
+                <h2>Input İçerisinden Değer Almak</h2>
+                <p>Bu yazımızda input içerisinden değer almayı inceleyeceğiz.Öncelikle input oluşturmak ile başlayalım
+                </p>
+                <h2>Input Oluşturma</h2>
+                <p>Dinamik olarak input oluşturmak için ;</p>
+                <p>var myInput=document.createElement("input)</p>
+                <p>Input'umuzu oluşturduktan sonra gerekli olan özellik eklemelerini yapıyoruz</p>
+                <p>myInput.setAtribute("id", "inputumuz");<br>myInput.setAttribute("type" ,
+                    "text");<br>myInput.setAttribute("value","Buraya Yazın");</p>
+                <p>Böylece input ve özellikleri oluşturuldu.Şimdi HTML içine bu input'u yerleştiriyoruz</p>
+                <p>1.adım</p>
+                <p>Body içine bir div oluşturalım.(Daha sonra input'u buraya atayacağız.)</p>
+                <p>var myDiv = document.createElement("div");<br>şeklinde yapabiliriz</p>
+                <p>2.adım</p>
+                <p>appendChild fonksiyonu ile input'u bu div'e ekleyelim</p>
+                <p>myDiv.appendChild(myInput);</p>
+                <h2>Input Değerini Alma</h2>
+                <p>Artık input'umuz oluştu ve değerini alabiliriz.</p>
+                <p>var inputDeger = document.getElementById("inputumuz").value;</p>
+                <p>Değeri alert olarak ekranda göstermek için;<br>window.alert(inputDeger) //Değerimiz burada yazacak
+                </p>
+                <h2>Alıştırmalar</h2>
+                <p>1.Bir input oluşturup yanına ekleyeceğimiz butone ile butona tıkladığımızda değerimiz alt satırda
+                    alalım</p>
+
+                <input type="text" id="myInput" value="Buraya yazınız."><button
+                    onclick="myFunction()">Tıklayınız</button>
+                <p id="myP"></p>
+
+                <p>2.Bir validation form oluşturup e-mail , yaş ve isim bilgilerini standartlara uygun şekilde alalım.
+                </p>
+                <form action="/learn/action_page.php" onsubmit="return sampleFunction()">Name (max 15 characters):
+                    <input type="text" id="fname" size="15" name="fname"><br>Age (from 1 to 100): <input type="text"
+                        id="age" size="3" name="age"><br>E-mail: <input type="text" id="email" size="25"
+                        name="mail"><br><br><input type="submit" value="Submit">
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-sm-8 offset-sm-2">
+                <form id="userForm">
+                    <div class="mb-3">
+                        <label class="form-label" for="username">Kullanıcı adı</label>
+                        <input class="form-control" type="text" name="username" id="username">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="score">Not bilgisi</label>
+                        <input class="form-control" type="number" name="score" id="score">
+                    </div>
+                    <div class="mb-3">
+                        <button type="reset" class="btn btn-danger">Sıfırla</button>
+                        <button type="submit" class="btn btn-success">Gonder</button>
+                    </div>
+                </form>
+                <div class="col-sm-8 offset-sm-2 mt-4">
+                    <ul class="list-group" id="userList">
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+        crossorigin="anonymous"></script>
+    <script src="/app.js"></script>
+    <script>
+        function myFunction() {
+            var x = document.getElementById("myInput").value;
+            document.getElementById("myP").innerHTML = ("Değerimiz :" + "" + x)
+        }
+    </script>
+    <script>
+        function sampleFuntion() {
+            var at = document.getElementById("email").value.indexOf("@");
+            var age = document.getElementById("age").value;
+            var fname = document.getElementById("fname").value;
+            submitOK = "true";
+
+            if (fname.length > 10) {
+                alert("the name may have no more than 10 characters");
+                submitOK = "false";
+            }
+            if (isNAN(age) || age < 1 || age > 100) {
+                alert("the age must be a number between 1 and 100");
+                submitOK = "false";
+            }
+            if (at == -1) {
+                alert("not a valid e-mail!");
+                submitOK = "false";
+            }
+            if (submitOK == "false") {
+                return false;
+            }
+        }
+    </script>
+    <script>
+        let userFormDOM = document.querySelector("#userForm")
+        userFormDOM.addEventListener("submit", formHandler)
+        const alertDOM = document.querySelector("#alert")
+
+        const alertFunction = (title, message, className="warning") => `<div class="alert alert-${className} alert-dismissible fade show" role="alert">
+        <strong>${title}</strong> ${message}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>`
+
+        function formHandler(event) {
+            event.preventDefault()
+            const USER_NAME = document.querySelector("#username")
+            const SCORE = document.querySelector("#score")
+            if(USER_NAME.value && SCORE.value) {
+                addItem(USER_NAME.value, SCORE.value)
+                USER_NAME.value = ""
+                SCORE.value = ""
+            }
+            else {
+                alertDOM.innerHTML = alertFunction(
+                    "Başlık bilgisi",
+                    "Eksik Bilgi Girdiniz" ,
+                    "success"
+                    )
+            }
+        }
+        let userlistDOM = document.querySelector("#userList")
+        const addItem = (userName, score) => {
+            let liDOM = document.createElement("li")
+            liDOM.innerHTML = `${userName} <span class="badge bg-primary rounded-pill">${score}</span>  `
+            userlistDOM.append(liDOM)
+            liDOM.classList.add('list-group-item','d-flex','justify-content-between','align-items-center')
+        }
+    </script>
+</body>
+
+</html>

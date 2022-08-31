@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="tr">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Döngüler</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-sm-8 offset-sm-2">
+                <h1>JavaScript'de forEach Nasıl Kullanılır?</h1>
+                <p>JavaScript'te forEach, döngü oluşturmamıza ve bu döngüyü sırayla çalıştırmamızı sağlayan bir array
+                    metodudur.</p>
+                <p>forEach fonksiyonu item, index, array olmak üzere 3 parametre alabilir.</p>
+                <p>arr.forEach(funtion(value, index, array) { <br> // index ve array kullanmak opsiyoneldir <br> }</p>
+                <p>Konuyu daha iyi anlamak için her parametrenin aldığı değeri gösteren bir örnek yapalım.</p>
+                <p>const animals = ["cat", "dog", "bird", "horse"];</p>
+                <p>animals.forEach((value, indexi array) => { <br> console.log("value:", value);
+                    <br>console.log("value parametresinin aldığı index : ", index); <br>
+                    console.log("array:", array); <br> });
+                </p>
+                <p>Aynı fonksiyonu her zaman kullanmak zorunda olduğumuz index parametresiyle yazalım.</p>
+                <p>const animals = ["cat", "dog", "bird", "horse"];
+                    <br>animals.forEach(animal => console.log(animal)); <br>// Arrow function gösterimi(ES6)
+                </p>
+                <p>Şimdi de forEach kullanarak yeni bir array oluşturabileceğim bir fonksiyon yazalım.</p>
+                <p>const numbers = [4, 11, 9];
+                    <br>const newArray = [];
+                </p>
+                <p>numbers.forEach(function(numbers){
+                    <br>newArray.push(numbers*3);
+                    <br>});
+                    <br>console.log(newArray);
+                    <br>// output = [12, 33, 27]
+                </p>
+                <p>Numbers array'ini kullanarak her elemanının iki fazlasını sahip olan başka bir array oluşturunuz.</p>
+                <p>const numbers = [12, 24, 36];</p>
+                <p>numbers.forEach(() => {
+                    <br> newArrayy.push(numberss + 2)
+                    <br> });
+                    <br> console.log(newArrayy)
+                </p>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+        crossorigin="anonymous"></script>
+    <script>
+        const animals = ["cat", "dog", "bird", "horse"];
+
+        animals.forEach((value, index, array) => {
+            console.log('value: ', value);
+            console.log('value parametresinin aldığı index :', index);
+            console.log('array:', array);
+        });
+    </script>
+    <script>
+        const animalss = ["cat", "dog", "bird", "horse"];
+        animalss.forEach(animal => console.log(animal));
+//Arrow function gosterimi(ES6)
+    </script>
+    <script>
+        const numbers = [4, 11, 9];
+        const newArray = [];
+
+        numbers.forEach(function (numbers) {
+            newArray.push(numbers * 3);
+        });
+        console.log(newArray);
+
+// output = [12, 33, 27]
+    </script>
+    <script>
+        const numberss = [12, 24, 36];
+        const newArrayy = []
+        numberss.forEach((numberss) => {
+            newArrayy.push(numberss + 2)
+        });
+        console.log(newArrayy)
+    </script>
+</body>
+
+</html>

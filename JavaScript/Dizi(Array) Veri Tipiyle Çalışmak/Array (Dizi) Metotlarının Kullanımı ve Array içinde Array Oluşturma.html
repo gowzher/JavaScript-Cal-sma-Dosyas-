@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dizi</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-sm-8 offset-sm-2">
+                <h1>Array (Dizi) Metotlarının Kullanımı ve Array İçinde Array Oluşturma</h1>
+                <h2>Dizi Metotları</h2>
+                <p>JavaScript'te , Arrayler(Diziler) sayesinde gerektği zaman verilerimizi saklıyor ve bunları manipüle
+                    edebiliyoruz. Bu kısımda anlatılan metotlar dizi içerisinde tuttuğumuz verilerimizi kullanmak
+                    istediğimiz yöntemlere göre değiştirip şekil aldırmamızı sağlıyor.</p>
+                <h3>.Push()</h3>
+                <p>Push metodu var olan bir diziye yeni bir eleman eklememizi sağlıyor. Eklemek istediğimiz elemanı
+                    parantez içerisine yazıyoruz. <br>Örneğin;</p>
+                <p>let alisverisListem =["elma", "ekmek", "süt"]; <br> alisverisListem.push("yumurta");
+                    <br> console.log(alisverisListem); <br> // Yeni Dizimiz ["elma", "ekmek", "süt", "yumurta"] şeklinde
+                    olacaktır.
+                </p>
+                <h3>.pop()</h3>
+                <p>Pop metodu var olan bir dizideki en son elemanı silmemizi sağlar. Parantez içerisine parametre almaz.
+                    <br>Örneğin;</p>
+                <p>let alisverisListem = ["elma", "ekmek", "süt"]; <br>alisverisListem.pop()
+                    <br> console.log(alisverisListem); // Yeni dizimiz ["elma", "ekmek"] şeklinde olacaktır. Son eleman
+                    olan " süt" diziden silinmiş oldu.
+                </p>
+                <h3>.includes()</h3>
+                <p>includes metodu bir elemanın dizi içerisinde bulunup bulunmadığını kontrol eder. Boolean (true/false)
+                    olarak çıktı alınır. <br> Örneğin;</p>
+                <p>const alisverisListem = ["elma", "ekmek", "süt"]; <br>const elmaVar =
+                    alisverisListem.includes("elma");
+                    <br>console.log(elmaVar); <br> // Dizi içerisinde elma olduğu için true yazdırmasını bekleriz. <br>
+                    const armutVar = alisverisListem.includes("armut"); <br>console.log(armutVar); // Dizi içerisinde
+                    armut olmadığı için ekrana false yazdırmasını bekleriz.
+                </p>
+                <h3>.slice()</h3>
+                <ul>
+                    <li>Slice (dilimleme) metodu bir dizinin bir kısmının kopyasıyla yeni bir dizi oluşturmamıza olanak
+                        sağlıyor.</li>
+                    <li>Parantez içerisine ise kopyalamak istediğimiz elemanların aralığını başlangıç ve bitiş
+                        indeksleri olacak şekilde iki parametre olarak giriyoruz. Bitiş indeksindeki değerin aralığa
+                        dahil olmadığını unutmayalım.</li>
+                    <li>Bu metot uygulandığı dizinin orjinal halini değiştirmiyor bu yüzden yeni oluşacak diziyi farklı
+                        bir değişkende saklıyoruz.</li>
+                </ul>
+                <p>Örneğin ;</p>
+                <p>const alisverislistem =["elma", "ekmek", "süt]; <br>const yeniAlisverisListem =
+                    alisverisListem.slice(0,2); <br>// "elma"dan başlayıp "süt"e kadar olan elemanları kopyala."süt"
+                    dahil değil. <br>console.log(yeniAlisverisListem); <br> // ["elma", "ekmek"] görmeyi bekleriz.</p>
+                <h3>.join()</h3>
+                <ul>
+                    <li>Bazen Dizi içerisinde topladığınız verileri, string (sözdizimi) olarak yazdırmak
+                        isteyebilirsiniz. Join metodu bu konuda yardıma yetişiyor.</li>
+                    <li>Parantez içerisine dizi elemanları arasına koymak istediğimiz string'i parametre olarak
+                        girebiliriz. Eğer bir parametre vermezsek virgül bastırır. </li>
+                </ul>
+                <p>Örneğin ;</p>
+                <p>const alisverisListem = ["elma", "ekmek", "süt"]; <br>const stringAlisverisListem =
+                    alisverisListem.join(); <br>console.log(stringAlisverisListem); <br>// Çıktıda "elma,ekmek,süt"
+                    bekleriz. <br> const stringAlisverisListem2 = alisverisListem.join("kiraz");
+                    <br>console.log(stringAlisverisListem2); <br>
+                    // Çıktıda "elma kiraz ekmek kiraz süt" bekleriz.</p>
+                <h3>.concat()</h3>
+                <ul>
+                    <li>Bu metot farklı dizileri birleştirip tek bir diziye çevirmemizi sağlıyor. <br>Örneğin;</li>
+                </ul>
+                <p>const yiyecekler = ["pasta", "baklava", "puding"];<br>
+                    const icecekler = ["su", "kahve"];<br>
+                    const menu =yiyicekler.concat(icecekler); <br> console.log(menu); <br>
+                    // Çıktıda ["pasta", "baklava", "puding", "su", "kahve"] bekleriz </p>
+                <p>Yazının devamında, içerisinde fonksiyon tnaımadığımız ve bu fonksiyonlarla dizideki elemanları
+                    manipüle ettiğimiz dizi metotlarını inceleyeceğiz.</p>
+                <h3>.forEach()</h3>
+                <p>dizi.forEach(function(diziElemanınınKendisi, diziElemanınınIndeksi, dizininkendisi) { <br> // Bir
+                    şeyler yap. <br>});</p>
+                <ul>
+                    <li>İhtiyacımıza göre bu parametrelerden hepsini veya aralarından birkaçını kullanabiliriz.</li>
+                </ul>
+                <p>Örneğin;</p>
+                <p>// Malzemeler dizisindeki her bir malzemeyi ve onun indeksini konsola yazdıran bir kod yazalım :</p>
+                <p>const malzemeler = ["yumurta", "un", "süt];</p>
+                <p>malzemeler.forEach(function(malzeme, malzemeIndeksi) { <br>console.log(malzeme, malzemeIndeksi); <br>
+                    });</p>
+                <p>// console.log() fonksiyonu her bir malzeme için ayrı ayrı çalışacağından çıktı olarak tüm
+                    malzemeleri (ve indeklerini) alt alta görürüz</p>
+                <h3>.map()</h3>
+                <ul>
+                    <li>Map metodu da forEach gibi kendisine verilen fonksiyonu dizinin her elemanı için uygular fakat
+                        forEach'ten farklı olarak sonucu yeni bir dizide tutar. Orjinal dizi olduğu gibi kalır.</li>
+                </ul>
+                <p>Örneğin:</p>
+                <p>// Bir dizideki sayıların 5 katından oluşan başka bir dizi oluşturalım:</p>
+                <p>const sayilar = [1, 2, 3];</p>
+                <p>let sayiların5kati = sayilar.map(function(sayi) { <br> return *5 ; <br> });</p>
+                <p>console.log(sayiların5kati); <br> // Çıktı olarak [5, 10, 15] görmeyi bekleriz.</p>
+                <p>console.log(sayilar); <br> // Çıktı olarak [1, 2, 3] görmeyi bekleriz. Orijinal dizimiz aynı kalır.
+                </p>
+                <h3>.some()</h3>
+                <p>Örneğin:</p>
+                <p>const sayilar = [4, 5, 6] ;</p>
+                <p>// sonucu görebilmek çıktıyı sonuç adlı değişkende tutalım: <br> const sonuc1 =
+                    sayılar.some(function(sayi) { <br> return sayi > 5 ; <br> }); </p>
+                <p>console.log(sonuc1); <br> // Dizi içerisinde 5'ten büyük bir eleman bulunduğu için çıktıda "true"
+                    görmeyi bekleriz.</p>
+                <p>const sonuc2 = sayilar.some(function(sayi) { <br> return sayi < 3 ; <br> });</p>
+                <p>console.log(sonuc2); <br> // Dizi içerisinde 3'ten küçük herhangi bir sayı olmadığı için çıktıda
+                    "false" görmeyi bekleriz.</p>
+                <h3>.every()</h3>
+                <ul>
+                    <li>every motedu belirtilen bir koşulun dizideki tüm elemanlara uyup uymadığını kontrol ederiz</li>
+                    <li>some metodunda olduğu gibi, Boolean yani true veya false olarak döner.</li>
+                    <li>True dönebilmesi için dizideki tüm elemanların fonksiyondaki koşula uyması gerekir</li>
+                </ul>
+                <p>Örneğin:</p>
+                <p>const sayilar = [4, 5, 6];</p>
+                <p>const sonuc" = sayilar.every(function(sayi) { <br> return sayi > 3 ; <br> });</p>
+                <p>console.log(sonuc1); <br> // Dizideki tüm sayılar 3'ten büyük olduğu için bu sonucun true dönmesini
+                    bekleriz.</p>
+                <p>const sonuc2 = sayilar.every(function(sayi) { <br> return sayi > 5; });</p>
+                <p>console.log(sonuc2); <br>// Dizideki tüm sayılar 5'ten büyük olmadığı için sonucun false dönmesini
+                    bekleriz.</p>
+                <p>const sonuc3 = sayilar.every(function(sayi) { <br> return sayi > 7 ; <br> });</p>
+                <p>console.log(sonuc3); <br> // Dizideki hiçbir sayı 7'den büyük olmadığı için sonucun false dönmesini
+                    bekleriz.</p>
+                <h3>.filter()</h3>
+                <ul>
+                    <li>filter metodu bir dizi içerisindeki belirli bir koşulu sağlayan elemanlar ile yeni bir dizi
+                        oluşturmamıza dolayısıyla dizi elemanlarını filtrelememize yarıyor.</li>
+                    <li>Yeni oluşacak diziyi bir değişkendi saklıyoruz.</li>
+                    <li>Orijinal dizi bozulmuyor.</li>
+                </ul>
+                <p>Örneğin:</p>
+                <p>const sayilar = [1, 2, 3, 4, 5];</p>
+                <p>const filtrelenmisSayilar = sayilar.filter(function(sayi) { <br> return sayi > 3 ; <br>});</p>
+                <p>console.log(filtrelenmisSayilar); <br> // Orijinal diziyi 3'ten büyük olan sayılar için
+                    filtrelediğimizde yeni oluşacak dizi [4, 5] olacaktır.</p>
+                <p>console.log(sayilar); <br> // Orijinal dizi bozulmayacağından çıktıda [1, 2, 3, 4, 5] olarak görürüz.
+                </p>
+                <h3>.find()</h3>
+                <ul>
+                    <li>Bu metot belirtilen koşula uyum sağlayan dizi elemanını bulmamızı sağlar.</li>
+                    <li>Diğer metotların aksine find metodu elemanın kendisini döner.</li>
+                    <li>Koşulu sağlayan birden fazla eleman varsa, bulduğu ilk elemanı döner</li>
+                    <li>Koşula sağlayan bir eleman bulamazsa undefined döner.</li>
+                </ul>
+                <p>Örneğin:</p>
+                <p>const sayilar = [4, 5, 6, 7];</p>
+                <p>const bulunacakEleman1 = sayilar.find(function(sayi) { <br> return sayi === 5 ; <br> });
+                    <br>console.log(bulunacakEleman1); <br> // Dizi içerisinde 5 eleman olarak bulunduğu için çıktıda
+                    elemanın kendisini yani 5 görmeyi bekleriz.</p>
+                <p>const bulunacakEleman2 = sayilar.find(function(sayi){ <br> return sayi > 5 ; <br> });
+                    <br>console.log(bulunacakEleman2); <br> // Dizi içerisinde 5'ten büyük birden fazla eleman olduğu
+                    için koşula uyan ilk elemanı yani 6'yı görmeyi bekleriz.</p>
+                <p>const bulunacakEleman3 = sayilar.find(function(sayi){ <br> return sayi < 3; <br> }); <br>
+                        console.log(bulunacakEleman3); <br> // Dizi içerisinde 3'ten küçük bir eleman olmadığı için
+                        çıktıda undefined görmeyi bekleriz.</p>
+                <h3>.sort()</h3>
+                <ul>
+                    <li>Bu metot, dizi içerisindeki elemanları sıralamaya yarar.</li>
+                    <li>Orijinal dizi sıralanmış şekilde döner. (Yani dizi mutate eder.)</li>
+                    <li>Eğer parametre olarak bir fonksiyon verilmezse dizi elemanları string'e çevrilir ve UTF-16
+                        değerlerine göre sıralanır.</li>
+                    <li>Artan veya azalan olarak sıralamak için farklı bir yol izlenmelidir.</li>
+                </ul>
+                <p>Örneğin:</p>
+                <ul>
+                    <li>Varsayılan haliyle (parametre vermeden) sıralama yapmak istediğimizde:</li>
+                </ul>
+                <p>const sayilar = [3, 5, 2, 10, 4];</p>
+                <p>sayilar.sort(); <br> console.log(sayilar); <br>// Çıktı olarak [10, 2, 3, 4, 5] alırız. <br>
+                    //(Sayıların string halleri UTF-16 değerlerine göre sıralandıkları için)</p>
+                <p>const sayilar = [3, 4, 2, 10, 4];</p>
+                <p>sayilar.sort(function(a,b) { <br> return b-a ; <br> }); <br>console.log(sayilar); <br>
+                    // Çıktı olarak [10, 5, 4, 3, 2] alırız.</p>
+                <h3>.reduce()</h3>
+                <ul>
+                    <li>Bu metot dizimizi yalnızca bir değere indirger.</li>
+                    <li>Parantez içerisine parametre olarak bir fonksiyon ve accumulator'ün (toplayıcının) başlangıç
+                        değeri girilir.</li>
+                    <li>Bu metot orijinal diziyi değiştirmez. (Mutate etmez.)</li>
+                    <li>Tam olarak ne yaptığını anlamak için örnekleri inceleyelim.</li>
+                </ul>
+                <p>Örnekler:</p>
+                <p>const sayilar = [10, 20, 30];</p>
+                <p>// Dizi içindeki sayıları toplayarak indirgeyecek bir fonksiyon yazalım: <br> function indirgeyici
+                    (akumulator, sayi) { <br> return akumulator + sayi; }</p>
+                <p>// Bu fonksiyonu ve toplamaya 0'dan başlayacağımızı belirten 0 sayısını metodumuza parametre olarak
+                    girelim ve sonucu bir değişkende tutalım: <br> const sonuc1 = sayılar.reduce(indirgeyici, 0);</p>
+                <p>console.log(sonuc1); <br> // 0 + 10 + 20 + 30 = 60 olacağından çıktı olarak 60 bekleriz.</p>
+                <p>// Eğer akümülatörümüzü 0 yerine 5'den başlatsaydık çıkabilecek sonucu görelim:</p>
+                <p>const sonuc2 = sayilar.reduce(indirgeyici, 5);</p>
+                <p>console.log(sonuc2); <br> // 5 + 10 + 20 + 30 = 65 olacağından çıktı olarak 65 bekleriz.</p>
+                <h3>Dizi İçerisinde Dizi Oluşturma</h3>
+                <p>Örneğin:</p>
+                <ul>
+                    <li>Piknik sepetimizde bulunan yiyeceklerin adlarını ve sayılını tutan bir dizimiz olsun:</li>
+                </ul>
+                <p>const piknikSepetim = [ <br> ["elma",3], ["muz", 5], ["ekmek", 2] <br> ];</p>
+                <ul>
+                    <li>Burada piknik sepetindeki bir elemanlara ulaşmak istersek:</li>
+                </ul>
+                <p>const ilkEleman = piknikSepetim[0] // ["elma", 3] <br>const ikinciEleman = piknikSepetim[2] //
+                    ["muz", 5] <br> const ucuncuEleman = piknikSepetim[2] // ["ekmek", 2]</p>
+                <p>const kacElma = piknikSepetim [0][1]; // 3</p>
+                <p>let kalemlik = new Array ();</p>
+                <p>// Aynı metotla kalemlik dizisi içerisinde yeni diziler oluşturabiliriz:</p>
+                <p>kalemlik[0] = new Array("Silgi", 2, "mavi"); <br>
+                    kalemlik[1] = new Array("Kalem", 3, "kırmızı"); <br> kalemlik[2] = new Array("Cetvel", 1, "siyah");
+                </p>
+                <p>console.log(kalemlik); <br> //Çıktı olarak [["Silgi", 2, "mavi"], ["kalem", 3, "kırmızı"], ["Cetvel",
+                    1, "siyah"]] şeklinde 3 elemanlı bir dizi döner.</p>
+                <p>// Bu dizi içerisindeki silgiyi görüntülemek istersek: <br> console.log(kalemlik[0][0]); <br>
+                    // Kalemlik dizisinin ilk elemanının birinci elemaı döner yani "silgi" dönmesini bekleriz.</p>
+                <p>// Kalemlik içerisindeki silgilerin rengini görüntülemek istersek: <br> console.log(kalemlik[0][2]);
+                    <br> // renk kalemlik dizisinin ilk elemanının üçüncü elemanı olduğundan "mavi" döner.</p>
+                <h3>Pekiştirme Soruları</h3>
+                <p>1.Soru</p>
+                <p>let dizi = [2, 5, 8, 11, 15, 17];</p>
+                <p>// Uygun dizi metotlarını kullanarak yukarıda verilen dizinin elemanları içinde 10'dan büyük olan
+                    elemanların 5'er katından oluşan yeni bir dizi oluşturun. (sonuç [55, 75, 85] olmalı.)</p>
+                <p>let dizi1 = dizi.filter(function(sayı){ <br>
+                    return sayı > 10 <br>
+                    }); <br>
+                    let dizi2 = dizi1.map(function(sayı){ <br>
+                    return sayı*5 <br>
+                    }) <br>
+                    console.log(dizi2)</p>
+                <p>2.Soru</p>
+                <p>let dizi = [3, 6, 9, 14, 16];</p>
+                <p>// Uygunu dizi metotlarını kullanarak, yukarıdaki dizi için aşağıdaki şartları sağlayan myFunction
+                    fonksiyonunu yazın. <br>
+                    // Elemanların arasında 5'ten büyük olan bir eleman varsa konsola "Beşten büyük bir eleman mevcut."
+                    yoksa "5'ten büyük eleman mevcut değil." yazdır.</p>
+                <p> function myFunction(series){ <br>
+                    const series2 = series.some(function(sayı){ <br>
+                    return sayı > 5 <br>
+                    }) <br>
+                    if(series2 == true){ <br>
+                    console.log("Beşten büyük bir eleman mevcut.") <br>
+                    } <br>
+                    else{ <br>
+                    console.log("5'ten büyük eleman mevcut değil.") <br>
+                    } <br>
+                    } <br>
+                    myFunction(series) ;</p>
+                <p>3.Soru</p>
+                <p>let dizi = [2, 3, 4];</p>
+                <p>// Uygun dizi metodunu kullanarak yukarıda verilen dizinin elemanlarının çarpımının sonucunu (24)
+                    veren bir fonksiyon yazınız.</p>
+                <p>let serial = [2, 3, 4]; <br>
+                    function myFunction2(serial){ <br>
+                    let serial1 = serial.find(function(sayı){ <br>
+                    return sayı > 3 <br>
+                    }) <br>
+                    let serial2 = serial1*6 ; <br>
+                    console.log(serial2) <br>
+                    } <br>
+                    myFunction2(serial)</p>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+        crossorigin="anonymous"></script>
+    <script>
+        const malzemeler = ["yumurta", "un", "süt"];
+
+        malzemeler.forEach(function (malzeme, malzemeIndeksi) {
+            console.log(malzeme, malzemeIndeksi);
+        });
+
+    </script>
+    <script>
+        let dizi = [2, 5, 8, 11, 15, 17];
+        let dizi1 = dizi.filter(function (sayı) {
+            return sayı > 10
+        });
+        let dizi2 = dizi1.map(function (sayı) {
+            return sayı * 5
+        })
+        console.log(dizi2)
+
+    </script>
+    <script>
+        let series = [3, 6, 9, 14, 16];
+        function myFunction(series) {
+            const series2 = series.some(function (sayı) {
+                return sayı > 5
+            })
+            if (series2 == true) {
+                console.log("Beşten büyük bir eleman mevcut.")
+            }
+            else {
+                console.log("5'ten büyük eleman mevcut değil.")
+            }
+        }
+        myFunction(series);
+    </script>
+    <script>
+        let serial = [2, 3, 4];
+        function myFunction2(serial) {
+            let serial1 = serial.find(function (sayı) {
+                return sayı > 3
+            })
+            let serial2 = serial1 * 6;
+            console.log(serial2)
+        }
+        myFunction2(serial)
+    </script>
+</body>
+
+</html>

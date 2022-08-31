@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="tr">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Object</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-sm-8 offset-sm-2">
+                <h1>Object Anahtar(Key) ve Değer(Value) Yapısının Kullanımı ve Metodları</h1>
+                <p>Bir obje(object), {...} süslü parantezleri ile, isteğe bağlı olarak bir özellikler(property)
+                    listesiyle oluşturulabilir. Property bir "anahtar(key): değer(value)" çiftidir ve burada key
+                    ("property name" de denir)bir string(yazı tipinde), value herhangi bir veri tipi olabilir.</p>
+                <h3>Literal ve property tanımlamaları</h3>
+                <p>obje örneği:</p>
+                <p>let car = {
+                    <br>brand : "BMW", // key (anahtar) "brand" "BMW" value(değerini) tutar
+                    <br>year: 2020, // key(anahtar) "year" 2020 value(değerini) tutar
+                    <br>};
+                </p>
+                <p>Property değerlerine noktalı yazım(dot notation) kullanarak erişilebilir:</p>
+                <p>console.log(car.brand); // "BMW"</p>
+                <p>İstediğimiz zaman property ekleyebilir, kaldırabilir ve objeden property okuyabiliriz. Mevcut bir
+                    property'yi eklemek veya değiştirmek için şu şekilde yazabiliriz:</p>
+                <p>car.model = "320i"; // objeye model isminde bir key ekler ve value olarak string atar</p>
+                <p>Bir propertyy'i kaldırmak için silme(delete) operatörünü kullanabiliriz:</p>
+                <p>delete car.year;</p>
+                <p>Birden fazla kelime içeren property name kullanabiliriz, ancak bunlar tırnak ("") içinde
+                    kullanılmalıdır:</p>
+                <p>let car = {
+                    <br>brand: "BMW",
+                    <br>year: 2020,
+                    <br>"is manual": true
+                    <br>};
+                </p>
+                <h3>Square brackets kullanımı</h3>
+                <p>Birden fazla kelime içeren property'ler için dot notation kullanamayız. Bunun yerine "square bracket
+                    notation" yani köşeli parantezli yazım kullanılır:</p>
+                <p>let person = {}; // set (oluştur)
+                    <br>person["likes sea"] = true; // get(getir)
+                    <br>console.log(person["likes sea"]); // true (doğru)
+                    <br>delete person ["likes sea"]; // delete (sil)
+                </p>
+                <p>Köşeli parantezli yazım aynı zamanda property name getirmede kullanılabilir:</p>
+                <p>let animal = {}; // set
+                    <br>let key = "flies"; // key atama
+                    <br>animal[key] = true; // value atama
+                </p>
+                <p>Yeni objemiz:</p>
+                <p>animal = {
+                    <br>"flies" : true // yeni eklediğimiz key value çifti
+                    <br>};
+                </p>
+                <p>Burada, değişken(variabla) key runtime(çalışma zamanında) hesaplanabilir veya kullanıcı girdisine
+                    bağlı olabilir. Sonrasında property'ye erişmek için kullanabiliyoruz. Bu bize kullanımda esneklik
+                    sağlıyor.</p>
+                <p>let person = {
+                    <br>name : "Jack",
+                    <br>age : 20,
+                    <br>};
+                    <br>let key = prompt("Kişinin hangi özelliğini öğrenmek isterdiniz?", "name");
+                </p>
+                <p>alert(person[key]); // Jack (prompt'a "name" yazarsak erişeceğimiz değer</p>
+                <ul>
+                    <li>Dot notation'ı benzer şekilde kullanamayız.</li>
+                </ul>
+                <h3>Computed property kullanımı</h3>
+                <p>Bir obje oluştururken, key'ler için köşeli parantezler yardımıyla dinamik değerler(variabla)
+                    kullanabiliriz. Buna hesaplanmış özellikler(computed properties) denir.</p>
+                <p>Computed properties, objedeki hangi property'nin güncelleneceğini dinamik olarak seçmemize olarak
+                    tanır.</p>
+                <p>function objectift (key, value) {
+                    <br> return {
+                    <br> [key]: value
+                    <br> }
+                    <br> }
+                    <br>objectift("name", "Anna"); // {name : "Anna"} atanmış yeni değer
+                </p>
+                <p>*Key, square brackets[] içine alındığı sürece herhangi bir ifade olabilir</p>
+                <h3>Kompleks Objeler Kullanımı</h3>
+                <p>Objelerin asıl amaçlarından biride yazılan uygulamaların state'lerini yönetmektir. Bu nedenle
+                    kompleks uygulamalarda da kompleks objeler kullanılmaktadır. Kompleks bir obje örneği de</p>
+                <p>let state = {
+                    <br>users : [
+                    <br>{name: "Brock, age: 25, favoriteColor: "red"},
+                    <br>{name: "Jessie, age: 17, favoriteColor: "yellow"},
+                    <br>{name: "James", age: 41, favouriteColor: "blue"},
+                    <br>{name: "Winnie", age: 18, favouriteColor: "purple"}
+                    <br>],
+                    <br>setting:{
+                    <br>version:"1.0.5",
+                    <br>DNS :"105.xx.xx.xx",
+                    <br>website: "https://www.example.com/"
+                    <br> },
+                    <br>banlist:["Ash", "Angellica", "Tom", "Jerry"]
+                    <br>}
+                </p>
+                <p>Yukarıda gördüğünüz gibi obje içinde her türlü veri türünü saklayabiliyoruz. Örnekteki "users"
+                    property'si içinde obje tutan bir array'e denk gelmekte. "settings" property'sinde ise obje içinde
+                    obje tutulmakta.</p>
+                <p>"banList" propertysinde 3. elemanı ulaşmak istersek şu şekilde ulaşabiliriz.</p>
+                <p>alert(state.banList[2])</p>
+                <p>"settings"lerdeki "website" değerine ulaşmak istersek şu şekilde ulaşabiliriz.</p>
+                <p>alert(state.settings.website)</p>
+                <p>"user"larda James'in en sevdiği rengi öğrenmek istersek, o veriye şu şekilde ulaşabiliriz.</p>
+                <p>alert(state.users[2].favoriteColor)</p>
+                <h3>JSON Veri Tipini Obje Olarak Kullanmak</h3>
+                <p>Değişmeyen ve statik olarak kullanmanız gereken verileri JSON derslerinde de anlatıldığı gibi ".json"
+                    dosya eklentisi ile bir dizinde kaydedip uygulamanızda bu değişmeyen verilerden yararlanmak
+                    isteyebilirsiniz. Projenizde JSON dosyalarıyla çalışabilmeniz için önce onu dosyada import etmeniz
+                    ve obje şekline çevirmeniz gerekmektedir. Bu işlem çok basit bir şekilde yapılabilir.</p>
+                <p>const veri = require("./dosyanizin/dizini/veri.json") // Bu işlemde require fonksiyonu ile dosyanızı
+                    import etmektesiniz</p>
+                <p>// Bu işlemden sonra veri bileşenini obje şeklinde kullanabiliirsiniz.</p>
+                <h3>Özet</h3>
+                <ul>
+                    <li>Objeler, birkaç özel niteliğe sahip ilişkilendirilebilir array(dizi)'lerdir.</li>
+                    <li>Key / value şeklinde property'leri saklar.</li>
+                    <li>Key ifadesi string veya sembol olmalıdır.</li>
+                    <li>Value ifadesi herhangi bir değer alabilir.</li>
+                    <li>Belli bir property'e erişmek için kullanabileceklerimiz:</li>
+                    <li>Dot notation: obj.property</li>
+                    <li>Square brackets notation obj["property"]. Bu özellik key'İn obj[varWithKey] gibi bir değişkenden
+                        alınmasına izin verir.</li>
+                    <li>Bu zamana kadar bahsettiğimiz objeler "plain object" oalrak isimlendirilir.</li>
+                </ul>
+                <h3>Obje Metodları</h3>
+                <p>Plain object için aşağıdaki metotlar(method) kullanılabilir:</p>
+                <p>Object.kets(obj) - Key'lerden oluşan bir array döner(return).
+                    <br>Object.values(obj) - Value'lardan oluşan bir array döner.
+                    <br>Object.entries(obj) - [key, value] çiftlerinden oluşan bir array döner.
+                </p>
+                <p>Tüm bu Object.*metorları array veri tipinde değer döner.</p>
+                <p>let person = {
+                    <br>name: "jack",
+                    <br>age: 20
+                    <br>};
+                </p>
+                <p>Object.keys(person) = ["name", "age"]</p>
+                <p>Object.values(person) = ["Jack", 20]</p>
+                <p>Object.entries(person) = [["name","Jack"] , ["age",20]]</p>
+                <h3>JSON Metodları</h3>
+                <p>Objenizi String veri türüne çevirip, projenizde objelerinizi direk sayfaya basmak isterseniz, onun
+                    içinde bir metot bulunmakta.</p>
+                <p>let person = {
+                    <br>name: "Jack",
+                    <br>age: 20
+                    <br>};
+                </p>
+                <p>document.getElementBuId("demo").innerHTML = JSON.stringify(person); // Bu objenizi bir stringe
+                    çevirip demo idsine basacaktır.</p>
+                <p>let stringObject = JSON.stringify(person);</p>
+                <p>let newPerson = JSON.parse(stringObject);
+                    <br>// parse methodu da stringify methodunun tersi olarak çalışır ve string objeye çevirir.
+                </p>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+        crossorigin="anonymous"></script>
+    <script>
+        // obje örneği
+        let car = {
+            brand: "BMW", 	// key(anahtar) "brand" "BMW" value(değerini) tutar 
+            year: 2020,  		// key(anahtar) "year" 2020 value(değerini) tutar 
+        };
+        console.log(car.brand); // "BMW"
+    </script>
+    <script>
+        // Birden fazla kelime içeren property name kullanabiliriz, ancak bunlar tırnak (" ") içinde kullanılmalıdır:
+        let carr = {
+            brand: "BMW",
+            year: 2020,
+            "is manual": true,
+        };
+    </script>
+    <script>
+        // Birden fazla kelime içeren property'ler için dot notation kullanamayız. Bunun yerine “square bracket notation” yani köşeli parantezli yazım kullanılır:
+        let person = {};                     // set (oluştur)
+        person["likes sea"] = true;         // get (getir)
+        console.log(person["likes sea"]);   // true (doğru)
+        delete person["likes sea"];         // delete (sil)
+    </script>
+    <script>
+        // Köşeli parantezli yazım aynı zamanda property name getirmede kullanılabilir:
+        let animal = {};           // set
+        let key = "flies";        // key atama
+        animal[key] = true;       // value atama
+
+        animal = {
+            "flies": true	      // yeni eklediğimiz key value çifti
+        }; 
+    </script>
+    <script>
+        let personn = {
+            name: "Jack",
+            age: 20,
+        };
+        let keyy = prompt("Kişinin hangi özelliğini öğrenmek isterdiniz?", "name");
+
+        // değişken ile erişim
+        alert(personn[keyy]);      // Jack (prompt’a “name” yazarsak erişeceğimiz değer)
+    </script>
+    <script>
+        function objectify(key, value) {
+            return {
+                [key]: value
+            }
+        }
+        objectify("name", "Anna");   //  {name: "Anna"} atanmış yeni değer
+    </script>
+    <script>
+        let state = {
+            users: [
+                { name: "Brock", age: 25, favoriteColor: "red" },
+                { name: "Jessie", age: 17, favoriteColor: "yellow" },
+                { name: "James", age: 41, favoriteColor: "blue" },
+                { name: "Winnie", age: 18, favoriteColor: "purple" }
+            ],
+            settings: {
+                version: "1.0.5",
+                DNS: "105.xx.xx.xx",
+                website: "https://www.example.com/"
+            },
+            banList: ["Ash", "Angelica", "Tom", "Jerry"]
+        }
+    </script>
+    <script>
+        let personnnn = {
+            name: "Jack",
+            age: 20
+        };
+
+        Object.keys(personnnn) = ["name", "age"]
+        Object.values(personnnn) = ["Jack", 20]
+        Object.entries(personnnn) = [["name", "Jack"], ["age", 20]]
+    </script>
+    <script>
+        let person = {
+            name: "Jack",
+            age: 20
+        };
+
+        document.getElementById("demo").innerHTML = JSON.stringify(person); // Bu objenizi bir stringe çevirip demo idsine basacaktır.
+
+        let stringObject = JSON.stringify(person);
+
+        let newPerson = JSON.parse(stringObject);
+// parse methodu da stringtify methodunun tersi olarak çalışır ve stringi objeye çevirir 
+    </script>
+</body>
+
+</html>

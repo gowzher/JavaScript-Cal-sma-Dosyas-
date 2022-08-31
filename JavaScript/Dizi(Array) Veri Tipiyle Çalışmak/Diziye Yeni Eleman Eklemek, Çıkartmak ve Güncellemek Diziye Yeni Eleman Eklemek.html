@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="tr">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dizi</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+</head>
+
+<body>
+  <div class="container mt-5 div1">
+    <div class="row">
+      <div class="col-sm-8 offset-sm-2">
+        <h1>Diziye Yeni Eleman Eklemek, Çıkartmak ve Güncellemek Diziye Yeni Eleman Eklemek</h1>
+        <p>Dizilere push(), unshift() ve splice() metotlarıyla yeni eleman ekleyebiliriz.</p>
+        <h3>push() metot</h3>
+        <p>push() metot, var olan bir dizinin sonuna eleman eklemeye yarar. <br>Örneğin;</p>
+        <p>var sports = ["basketball", "football", "tennis"]; <br>
+          console.log(sports); // basketball, football, tennis <br>
+          sports.push("baseball"); <br> console.log(sports); // basketball, football, tennis, baseball </p>
+        <h3>unshift() metot</h3>
+        <p>unshift() metot, var olan bir dizinin başına eleman eklemeye yarar. örneğin;</p>
+        <p>var sports = ["basketball", "football", "tennis]; <br>console.log(sports); // basketball, football , tennis
+          <br> sports.unshift("baseball"); <br>console.log(sports); // baseball, basketball, football, tennis</p>
+        <h3>splice() metot</h3>
+        <p>splice() metot diziye hem eleman eklemek için hem de eleman silmek için kullanılır. Metodun ilk parametresi
+          işlemin yapılacağı index numarasını, ikinci parametre ise kaç elemanın silineceğini belirtir örneğin;</p>
+        <p>var sports = ["basketball", "football", "tennis"]; <br>console.log(sports); // basketball, football, tennis
+          <br>
+          sports.splice(1,0,"baseball"); <br> console.log(sports); // basketball, baseball, football, tennis </p>
+        <h3>Diziden Eleman Silmek</h3>
+        <p>Dizilerden pop(), shift() ve splice() metotlarıyla eleman silebiliriz.</p>
+        <h3>pop() metot</h3>
+        <p>pop() metot, var olan bir dizinin en sonundaki eleman silmeye yarar. Örneğin;</p>
+        <p>var sports =["basketball", "football", "tennis"]; <br>console.log(sports); // basketball, football, tennis
+          <br>sports.pop(); <br> console.log(sports); // basketball, football</p>
+        <h3>shift() metot</h3>
+        <p>shift() metot, var olan bir dizinin başından eleman silmeye yarar <br>Örneğin;</p>
+        <p>var sports = ["basketball", "football", "tennis" ]; <br> console.log(sports); // basketball, football, tennis
+          <br> sports.shift(); <br> console.log(sports); // football, tennis</p>
+        <h3>splice() metot</h3>
+        <p>splice() metot diziye hem eleman eklemek için hem de eleman silmek için kullanabileceğini yukarda
+          belirtmiştik. Metodun ilk parametresi işlemin yapılacağı index numarasını, ikinci parametre ise kaç elemanın
+          silineceğini belirtir. <br>Örneğin;</p>
+        <p>var sports = ["basketball", "football", "tennis"]; <br> console.log(sports); // basketball, football, tennis
+          <br>sports.splice(1,1); <br> console.log(sports); // basketball, tennis</p>
+        <h3>Dizide Eleman Güncellemek</h3>
+        <p>Dizi içerisindeki her bir eleman 0'dan başlayan bir indeks numarasına sahiptir. Bu sayede indeks numaralarını
+          kullanarak güncelleme yapabiliriz <br> Örneğin ;</p>
+        <p>var sports = ["basketball", "football", "tennis"]; <br> console.log(sports[2]); // tennis
+          <br> sports[2] = "judo"; <br> console.log(sports[2]); // judo
+        </p>
+      </div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>

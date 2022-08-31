@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="tr">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Döngüler</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-sm-8 offset-sm-2">
+                <h1>Filter Metodu</h1>
+                <p>Bir Array metodu olan filter(), dizi elemanlarını döngüye alıp, istediğimiz koşula sahip olanlarla
+                    yeni bir dizi oluşturmak için kullanılır.</p>
+                <p>const products = ["Mikrofon","Kablo","Telefon","Bilgisayar","Mouse","Klavye","Ekran"]</p>
+                <p>Yukarıda products dizisinden, harf sayısı 5'ten fazla olanları almak istiyorum.</p>
+                <p>const newProducts = products.filter(eleman => eleman.length > 5)</p>
+                <p>console.log(newProducts); //["Mikrofon", "Telefon", "Bilgisayar", "Klavye"]</p>
+                <p>Yukarda örnekte harf sayısı 5'ten fazla olan elemanları filter() metodu ile filtreleyip, newProducts
+                    adında oluşturduğum yeni diziye atadım.</p>
+                <p>Pekiştirmek için bir örnek daha yapalım</p>
+                <p>const users = [
+                    <br> {fullName : "Mehmet Veli", isActive:false},
+                    <br> {fullName : "Ali Duran", isActive: true},
+                    <br> {fullName: "Ahmet Yılmaz", isActive: true},
+                    <br> {fullName: "Oğuz Şahin", isActive: false},
+                    <br> ]
+                </p>
+                <p>Yukardaki users dizisindeki nesneler içerisinden isActive'i true olanları almak istiyorum.</p>
+                <p>const activeUsers = users.filter(user => user.isActive === true);
+                    <br> console.log(activeUsers.fullName); //(2)[{...},{...}] (Ali Duran, Ahmet Yılmaz)
+                    <br> // Üst satırdaki sonuç bize, elemanları nesne olan 2 elemanlı bir dizi olduğunu söylüyor.
+                </p>
+                <h3>Sorular:</h3>
+                <p>const person = [{
+                    <br>name: "Adem",
+                    <br>age: 25,
+                    <br>languages: ["JavaScript", "CSS"],
+                    <br>},
+                    <br>{
+                    <br> name: "Oğuz",
+                    <br> age: 33,
+                    <br>languages: ["Java", "HTML"],
+                    <br> }
+                    <br>];
+                </p>
+                <p>Soru 1: Yukarıdaki diziyi kullanarak filter() metodu ile yaşı 30'dan büyük olan kişiyi getirin</p>
+                <p>Soru 2: Yukarıdaki diziyi kullanarak filter() metodu ile JavaScript bilen kişiyi getirin</p>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+        crossorigin="anonymous"></script>
+    <script>
+        const products = ["Mikrofon", "Kablo", "Telefon", "Bilgisayar", "Mouse", "Klavye", "Ekran"]
+        const newProducts = products.filter(eleman => eleman.length > 5)
+        console.log(newProducts)
+    </script>
+    <script>
+        const users = [
+            { fullName: "Mehmet Veli", isActive: false },
+            { fullName: "Ali Duran", isActive: true },
+            { fullName: "Ahmet Yılmaz", isActive: true },
+            { fullName: "Oğuz Şahin", isActive: false },
+        ]
+        const users2 = users.filter(user => user.isActive)
+        console.log(users2)
+    </script>
+    <script>
+        const person = [{
+            name: "Adem",
+            age: 25,
+            languages: ["JavaScript", "CSS"],
+        },
+        {
+            name: "Oğuz",
+            age: 33,
+            languages: ["Java", "HTML"],
+        }
+        ];
+        person30 = person.filter(function(user){
+            return user.age >30
+        })
+        console.log(person30)
+        personJS = person.filter(function(user){
+            return user.languages.includes("JavaScript")
+        })
+        console.log(personJS)
+    </script>
+</body>
+
+</html>

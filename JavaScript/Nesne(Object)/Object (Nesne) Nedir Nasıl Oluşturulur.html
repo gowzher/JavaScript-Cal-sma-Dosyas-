@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Object</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+  </head>
+  <body>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-sm-8 offset-sm-2">
+                <h1>Object(Nesne) Nedir? Nasıl Oluşturulur?</h1>
+                <h3>JavaScript Object</h3>
+                <p>JavaScript'in en temel veri tipi kabul edilen objeler, son derece önemlidir ve nasıl çalıştıklarını bilmek bir front-end developer için hayati önem taşır. Bu yazıda JavaScript objelerinin teorik çalışma mantığını örneklerle göreceksiniz.</p>
+                <h3>Objenin basit tanımı</h3>
+                <p>Objeler, içerisinde birden fazla değeri depolayan yapılardır. Property olarak bilenen bu değerler primitive(String, number, boolean vb.) veya başka objeler olabilirler ve her bir değer string veya sembol ile isimlendirilebilir.</p>
+                <p>let artist ={  //artist isimli objemiz
+                    <br>name:"zoe", //name isimli, "zoe" primitive değerine sahip
+                    <br>property
+                    <br>album:{  // album isimli, içerisinde başka bir objeye yer veren
+                    <br>property
+                    <br>title:"Reptilectric",
+                    <br>year:2008 
+                    <br>},
+                    <br>};
+                </p>
+                <p>Objeler değiştirilebilen veri tiplerindendir. İçerdiği propertyler, objenin kendisi const keyword ile atanmış olsa bile değiştirilebilirler. Fakat primitive değerlerden farklı olarak objeler, referans yoluyla değiştirilirler ve değişen obje, yeni bir hafıza adresine sahip olur. Çünkü primitive değerlerin aksine objeler, JavaScript istemcisinin belleğinde, sahip oldukları değerlerle değil, sistemin atadığı hafıza adresleriyle kayıtlıdırlar. Bunun ayrımını aşağıdaki örnekte şöyle görebiliriz.</p>
+                <p>// aynı değerlere sahip 2 primitive veri tipi
+                    <br>let mesaj ="merhaba";
+                    <br>let başkaBirMesaj = "merhaba";
+                    <br>console.log(mesaj == başkaBirMesaj); //true
+                </p>
+                <p>// aynı değerlere, farklı memory adresslere sahip 2 obje 
+                    <br>let obje = {
+                    <br>mesaj:"merhaba"
+                    <br>}
+                    <br>let başkaBirObje = {
+                    <br>mesaj:"merhaba"
+                    <br>}
+                    <br>console.log(obje == başkaBirObje); //false
+                </p>
+                <p>Bu örnekte görüldüğü gibi, aynı primitive değerlere sahip olan "mesaj" ve "başkaBirMesaj" isimli değişkenler eşit kabul ediliyor. Fakat "obje" ve "başkaBirObje" isimli objeler de bire bir aynı değerleri barındırmalarına rağmen eşit kabul edilmiyorlar. Çünkü bu iki obje, arka planda göremediğimiz iki ayrı hafıza adresiyle tanınıyorlar, bu yüzden içerikleri aynı olsa da farklı kabul ediliyorlar.</p>
+                <h3>Obje Oluşturmak</h3>
+                <p>Objeler üç şekilde oluşturabilir.Object literal, new Object keyword'ü ve Object.create() fonksiyonuyla. Object literal ve new Object yöntemleri, normal bir objeyi oluştururken kullanılan yöntemlerdir. Object.create() yöntemi ise, mevcut bir onjeden kalıtım yoluyla bazı bilgiler alarak yeni bir obje oluşturmaya yarar.</p>
+                <h3>Object Literals</h3>
+                <p>JavaScript'te obje oluşturmanın en kolay yolu olarak bilinir. Süslü parantez {} kullanılarak oluşturulan objenin içerdiği property'lerin değerleri iki nokta : işaretiyle belirtilir. Property'ler birbirlerinden virgül, ile ayrılır. Örnek vermek gerekirse:</p>
+                <p>let countriesTalkSpanish = {
+                    <br>continent: "south america",
+                    <br>language: "spanish"
+                    <br>};
+                </p>
+                <p>countriesTalkSpanish isimli obje, continent ve language adında iki propertye sahip. Bu property'ler de iki primitive değeri barındırıyor.</p>
+                <h3>New Keyword ile Obje Oluşturmak</h3>
+                <p>New keyword'ü yeni bir obje oluşturup başlatır. Oluşturulurken belli başlı bazı constructor invocation'lardan(kurucu çağrılarından) birini(Object, Array, Date vb.) yazmak ve sonuna mutlaka fonksiyon çağrısı olduğunu belirten parantezleri () eklemek gerekir. Fonksiyon çağrısı, objenin başlatılması için olmazsa olmazdır. Aşağıdaki örnekte standart object invocation kullanarak, Fransızca konuşulan Afrika ülkeleri objesini oluşturalım ve tıpkı bir önceki örnekte olduğu gibi, language ve continent property'leri verelim.</p>
+                <p>let countriesTalkFrench = new Object();
+                    <br>countriesTalkFrench.continent = "afrika";
+                    <br>countriesTalkFrench.language = "french";
+                </p>
+                <p>objemize new keyword ile initialize ettikten sonra property'lerini atadık. Dikkat, Object literal'dakinden farklı olarak iki nokta : ve süslü parantez {} kullanmadık</p>
+                <h3>Object Prototype</h3>
+                <p>Son yöntem olan Object.create() yöntemine geçmeden önce, prototype hakkında bilgi sahibi olmak, son yöntemi anlamak için önemli.Javascripty'te hemen her objenin bağlantılı olduğu ikinci bir obje vardır ve bu ikinci objelere prototype denir. Mevcut obje, ikinci objeden yani prototype'ından kalıtım(inheritence) alır.Object literal yöntemiyle oluşturulan her objenin protipi aynıdır: object.prototype. New koyword'ü kullanılarak oluşturulan objelerin ise nereden kalıtım alacakları, function invocation'larına göre değişiklik gösterebilir. Örneğin new Date() objesi, hem object.prototype'ın kalıtımını alırken hem de date.prototype'dan kalıtım alır.</p>
+                <h3>Object.create</h3>
+                <p>Obje oluşturmadaki son yöntem olan object.create() yöntemi, yeni bir obje oluştururken nereden kalıtım alacağına karar vermemizi sağlayan bir yöntemdir. Aşağıda yer alan örneklere bir bakalım;</p>
+                <p>let noInheritence = Object.create(null); //herhangi bir kalıtım (inheritence) almaz</p>
+                <p>Herhangi bir yerden kalıtım almasını istemediğimiz bir obje oluşturma istediğimizde null parametresini atamak yeterli olacaktır.</p>
+                <p>let standartObject = Object.create(Object.prototype) // standart obje kalıtımı alır</p>
+                <p>standartObject isimli obje örneği, object literal ve new object keyword ile oluşturulan objelerin prototiplerini parametre olarak aldığı için, onlar gibi çalışır</p>
+                <p>let argentina = Object.create(countriesTalkSpanish)</p>
+                <p>argentina isimli obje örneği ise daha önce oluşturduğumuz countriesTalkSpanish isimli object literal'dan kalıtım alacağı için onunla aynı property'lere sahip olur. Yani argentina objesi, Güney Amerika kıtasında bulunduğu ve İspanyolca konuşulduğunu, kalıtım yoluyla sahip olduğu property'lerden belli eder.</p>
+                <p>argentina.capital = "buenos aires";</p>
+                <p>objeye, ülkenin başkentini belirten yeni bir property atadık. Artık elimizde başkentini, konuşulan dili ve hangi kıtada yer aldığını bildiğimiz bir ülke var.</p>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+  </body>
+</html>

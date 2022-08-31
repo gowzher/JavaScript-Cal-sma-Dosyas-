@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Döngüler</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+  </head>
+  <body>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-sm-8 offset-sm-2">
+                <h1>JavaScript for Döngüsü Kullanımı</h1>
+                <p>bir for döngüsü, belirtilen koşul doğru olduğu sürece komutların çalıştırılmasını sağlar. Koşul sağlanmazsa döngü çalışmayı durdurur.</p>
+                <p>for (BaşlangıçAtaması; Koşulİfadesi; döngüSonundaÇalışacakİfade) {"Koşul sağlanıyorsa(true) çalışmasını istediğim komutlar." <br>}; <br>"Koşul sağlanmazsa(false) döngüden çıkılır."</p>
+                <p>Yukarıda, basitçe bir for döngüsünün nasıl çalıştığını gördük.</p>
+                <p>Şimdi gerçek bir örnekle konunun pekişmesini sağlayalım.</p>
+                <p>for(var i = 1; i < 5; i++) { <br> console.log(i); <br> };</p>
+                <p>Yukarıda ne olduğunu basitçe anlatayım.</p>
+                <p>İlk olarak değeri 1 olan i adında bir değişken tanımladık.</p>
+                <p>Daha sonra bu i değişkeninin 5 sayısından küçük olduğu sürece döngü içerisine girip çalışmasını istedik.</p>
+                <p>for(var i = 1; 1 < 5; i++) { <br> console.log(i); }; <br> // 1, 2, 3, 4</p>
+                <p>Koşul sağlandığı sürece döngü çalışacak ve console.log(i) ifadesi ile bize her çalıştığında i sayısının güncel değerini verecek.</p>
+                <h3>Örnekler ve Ödevler</h3>
+                <p>Örnek 1 : 10'dan 0'a kadar olan sayıları geri doğru olacak şekilde konsola yazdıralım.</p>
+                <p>for(var i = 10; i >= 0; i--) { <br>console.log(i); <br> }; <br> // 10, 9, 8, ... 2, 1, 0</p>
+                <p>Döngümüz 10 ve 0 arasındaki sayılara bakacağı için ilk değerimizi 10 verdik ve 0'dan küçük veya eşit olduğu sürece çalışsın dedik.</p>
+                <p>Sayımızın geriye doğru azalması gerektiği için -- ifadesini kullandık.</p>
+                <p>Ödev 1: 20 ile 40 arasındaki tüm sayıları konsola yazdırın.</p>
+                <p>for ( let i = 20 ; i <= 40 ; i++){<br>
+                console.log(i)<br>
+                }</p>
+                <p>Örnek 2: 0 ve 50 sayıları arasından çift olanları konsola yazdıralım.</p>
+                <p>for(var i = 0; i < 50; i++) { <br> if (i % 2 == 0){ <br>
+                console.log(i); <br>
+                }; <br> }; <br> // 0, 2, 4, ... 44, 46, 48 </p>
+                <p>Döngümüz 0 ve 50 arasındaki sayılara bakacağı için ilk değerimizi 1 verdik ve 50'den küçük olduğu sürece çalışsın dedik.</p>
+                <p>Daha sonra çift sayıları alabilmek için bir koşul ifadesi yazdık.</p>
+                <p>if (i % 2 == 0) ifadesi i sayısının 2'ye bölümünden kalanı 0 olanları console.log(i) ile al demektir.</p>
+                <p>Ödev 2: 0 ve 50 sayıları arasından tek olanları console'a yazdıralım.</p>
+                <p>for( let i = 0; i < 50 ; i++){ <br>
+                if(i % 2 == 1){ <br>
+                console.log(i) <br>
+                } <br>  
+                }</p>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+    <script>
+        for ( let i = 20 ; i <= 40 ; i++){
+            console.log(i)
+        }
+    </script>
+    <script>
+        for( let i = 0; i < 50 ; i++){
+            if(i % 2 == 1){
+                console.log(i)
+            }
+        }
+    </script>
+  </body>
+</html>

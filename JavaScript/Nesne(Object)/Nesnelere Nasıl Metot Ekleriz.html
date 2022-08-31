@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Object</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-sm-8 offset-sm-2">
+                <h1>Nesnelere Nasıl Metot Ekleriz?</h1>
+                <h2>Metot Nedir?</h2>
+                <p>JavaScript'in referans veri tiplerinden biri olan ve Türkçede "nesne" anlamına gelen object key-value
+                    (anahtar-değer)yapı mantığına sahip bir veri tipidir. Yani bir nesne oluştururken bu nesnemiz için
+                    bir veya birden fazla property(özellik) tanımlanabilir ve key-value mantığındaki gibi nesnemizin
+                    sahip olduğu özellikler için değerler verilmelidir. Özelliklerin sahip olduğu değerler farklı veri
+                    tiplerinde olabileceği gibi bir fonksiyonu da işaret edebilir. Bir özellik eğer bir fonksiyonu
+                    işaret ediyorsa bu özelliğe <strong>metot</strong> denir.</p>
+                <p>Bir nesye metot 2 şekilde eklenebilir. Bunlardan biri yukarıda bahsedildiği üzere nesneye property
+                    olarak eklemek, bir diğeri ise prototype(prototip) fonksiyonu üzerinden eklemektir.</p>
+                <h3>Metotu Özellik Olarak Eklemek</h3>
+                <p>Metot, bir nesnein oluşturulduğu sırada özellik olarak eklenip tanımlanabileceği gibi, önceden
+                    tanımlanmış bir nesneye sonradan da eklenebilir. Öncelikle ilk durumu ele alıp aşağıdaki örneği ona
+                    göre inceleyelim</p>
+                <p>Örneğin;"person" adında bir nesne oluşturalım ve bu nesnemiz "name", "surname", "age", "city"
+                    özelliklerine ve bu kişinin bana tüm bilglerini gösterecek bir "introduce" metoduna sahip olsun.</p>
+                <p>var person = {
+                    <br>name: 'Rumeysa',
+                    <br>surname: 'Turgut',
+                    <br>age: 23,
+                    <br>city: 'Istanbul',
+                    <br>introduce: function () {
+                    <br>console.log(`My name is ${this.name} ${this.surname}, I'm ${this.age} yo.`);
+                    <br>},
+                    <br>};
+                </p>
+                <p>Yukarıdaki gibi, metot tanımlanırken <strong>function()</strong> anahtar kelimesi kullanılarak
+                    yapılacabileceği gibi EcmaScript6'nın <strong>arrow function</strong> yönteminin söz diziminden
+                    yararlanarak yapmak da mümkündür. Fakat burada dikkat edilmesi gereken noktalardan biri arrow
+                    functionlar <strong>this</strong> erişimine sahip değildir. Yani aşağıdaki gibi bir kullanımda
+                    <strong>introduce</strong> fonksiyonu çalıştırıldığında çıktıda özellikler undefined(tanımlanmamış)
+                    olarak gözükecektir.</p>
+                <p>var person = {
+                    <br>name: 'Rumeysa',
+                    <br>surname: 'Turgut',
+                    <br>age: 23,
+                    <br>introduce: () => {
+                    <br>return `My name is ${this.name} ${this.surname}, I'm ${this.age} yo.`;
+                    <br>},
+                    <br>};
+                    <br>console.log(person.introduce());
+                </p>
+                <p>Bu metodun arrow function söz dizimi kullanılarak yapılmak istendiği bir durumda özelliklere nesnenin
+                    ismiyle erişilebilir. Buna göre yukarda arrow function kullanarak oluşturduğumuz metot içerisinde
+                    özelliklere erişim şu şekilde olacaktır;</p>
+                <p>var person = {
+                    <br>name: 'Rumeysa',
+                    <br>surname: 'Turgut',
+                    <br>age: 23,
+                    <br>introduce: () => {
+                    <br>return `My name is ${person1.name} ${person1.surname}, I'm ${person1.age} yo.`;
+                    <br>},
+                    <br>};
+                </p>
+                <p>Şimdi de önceden oluşturulmuş bir nesneye nasıl metot ekleyebliriz ona bakalım. Aslında burada metodun sahip olabileceği yapı değişmiyor yani <strong>function()</strong> anahtar kelimesi veya arrow function söz dizimi kullanılarak oluşturulabilir. Yukardaki örnek üzerinden devam edecek olursak <strong>person</strong> nesnemize <strong>myCity</strong> adında yeni bir metot ekleyelim ve bize kişinin yaşadığı şehri göstersin.</p>
+                <p>person.myCity = function () {
+                    <br>console.log(`I live in ${this.city}`);
+                    <br>};
+                    <br>person.myCity();
+                </p>
+                <p>Yukardaki örnekte de görüldüğü gibi nesneye yeni bir metot eklemek istendiğinde nesneİsmi.eklenecekMetotİsmi = <strong>function()</strong> şeklinde yapılabilir. Veya istendiği taktirde daha öncede bahsettiğimiz gibi arrow function ile yapmak da mümkündür.</p>
+                <h3>Prototype Konusu ve Prototype Yöntemi</h3>
+                <p>Buraya kadar obje tanımlamayı ve objelere fonksiyon eklemeyi öğrendik. Ancak öğrendiğimiz yöntemde key-value yani anahtar değer yöntemini kullanmıştık.</p>
+                <p>Ancak nesneye yönelik programlama konseptlerinde objelerin ve sınıfların çok daha detaylı kullanım alanları mevcuttur. Bu noktada da objeye fonksiyon ekleme konusunda karşımıza özel bir kullanım geliyor. Bu kullanımdan önce netleştirmemiz gereken bazı konular var.</p>
+                <p>Öncelikle JavaScript'te çoğu tanımın bir obje olduğunu bilmemiz gerekiyor. Evet biraz garip gelebilir ama fonksiyonlar da dahil olmak üzere çok tanımlama bir objedir. Bu obje tabanlı yapısı sayesinde fonksiyonları, başka fonksiyonlara parametre olarak verebilir ayrıca bir fonksiyon da döndürebiliriz.</p>
+                <p>Bu noktada fonksiyonların ne olduğunu ve nasıl çalıştığını anlamamız gerekiyor. Dile ait bu detayları öğrenebilirsek sonra farklı kullanımlardan rahatça faydalanabiliriz.</p>
+                <p>Fonksiyonlar JavaScript dilinde, Function sınıfının birer objeleridir. Nasıl yani? Evet fonksiyon diye diye bağrımıza bastığmız yapılar da aslında bir sınıfın objeleridir. Hatta bu sınıfın detaylarına ve özelliklerine buradan ulaşabilirsiniz. Ama durun daha bitmedi. Üstelik bu sınıfın bir kurucu(constructor) ve diğer bütün objeler gibi inherit ettiği bir prototype bile var. Hatta bu prototype yardımıyla fonksiyonun adına bile ulaşabiliriz. Örnek:</p>
+                <p>const fonksiyonAdi = () => {console.log("Merhaba Kodluyoruz")}
+                    <br>console.log(fonksiyonAdi.name);
+                    <br>// "fonksiyonAdi"
+                </p>
+                <p>Yukarıdaki örnekte basit bir fonksiyon tanımladık ve bu fonksyionun adını "." operatörüyle eriştik. console.log(fonksiyonAdi.name) kodunu çalıştırdıktan sonra "Merhaba Kodluyoruz" çıktısının gelmediğine dikkat edin. Burada fonksiyonu execute etmedik. Yalnızca bu objenin bir özelliğine eriştik.</p>
+                <p>Öyleyse JavaScript'te fonksiyonların da birer obje olduğunu öğrendik. Peki daha önce öğrendiğimiz şekilde bu js fonksiyonlarına birer yeni özellik ekleyebilir miyiz?</p>
+                <p>Peki konumuz objeler ve objelere fonksiyon eklenmesi değil miydi? Fonksiyonların özellikleriyle objelerin ne ilgisi var Firdevs hanım? Bu noktada da obje oluşturmanın yeni bir yöntemini öğreneceğiz.</p>
+                <p>function Insan(isim,yas) {
+                    <br>this.isim = isim;
+                    <br>this.yas = yas;
+                    <br>}
+                </p>
+                <p>
+                    Haydaa ! Bu ne şimdi ? Evet JavaScript'in sürprizlerle dolu olduğu doğrudur. Hanımlar beyler yukarıda gördüğünüz yapının adı JavaScript Object Constructor. Daha önce bir değişken yardımıyla obje tanımlamıştık. Class keyword'ünü kullanarak da bir sınıf tanımlayabiliyorduk. Yukarıdaki yapı ise fonksiyon kullanarak bir sınıf tanımlamamıza imkan sağlayan yapılardır. Bu şekilde bir obje mutable(mutasyona uğrayabilir daha az havalı haliyle özellikleri değiştirilebilir) bir Sınıf tanımlamış oluyoruz. Sınıf ile obje arasındaki farkı nesneye yönelik programlama konusunda daha detaylı öğrenebilirsiniz ancak burada bir obje şablonu oluşturduğumuzu söyleyebiliriz. Artık "new" anahtar kelimesi ile bu şablonda bir obje oluşturabiliriz.
+                </p>
+                <p>const ali = new Insan("ali",21);
+                    <br>console.log(ali.yas);
+                    <br>// 21
+                </p>
+                <p>Böylece artık "ali" isminde bir objemiz hazırlanmış oldu. Peki bu fonksiyon yöntemini kullanarak bir obje hazırladığımızı düşünelim. Bu objeye sonradan extra bir fonksiyon eklemek istersek ? Kafanız karışmasın fonksiyon kurucu yardımıyla hazırladığımız bir sınıf var ve bu Sınıfı kullanarak "new" anahatar kelimesiyle bir obje oluşturduk . Ancak zaman değişti ve artık bu sınıfta kullanmak üzere fazladan bir fonksiyon tanımlamak istiyoruz. Bu fonksiyonu/özelliği öyle bir şekilde eklemeliyiz ki olmayan bir fonksiyon/özellik eklemek istiyoruz. Bu fonksiyonu/özelliği öyle bir şekilde eklemeliyiz ki olmayan bir fonksiyon/özellik eklemek istiyoruz. Objelere özellik eklemek konusunda bir problemimiz yok çünkü bunun mutable olduğunu biliyoruz.</p>
+                <p>ali.yeniOzellik = "Sonradan eklenmiş bir özellik";
+                    <br>console.log(ali.yeniOzellik);
+                    <br>// "Sonradan eklenmiş bir özellik"
+                </p>
+                <p>Peki sınıflarda bu durum nasıl oluyor ? Sınıf olarak belirlediğimiz şablona tanımı değiştirmeden nasıl fonksyion veya özellik ekleyebiliriz ?</p>
+                <p>İşte bu durumla karşılaştığımızda da prototype özelliği karşımıza çıkar. Peki prototype nedir ? </p>
+                <p>Prototype, sınıflara JavaScript tarafından otomatik olarak eklenen bir objedir. Eklenmek burada çok doğru bir tabir değil. Aslında bütün objeler tarafından miras alınan bir özelliktir. Bu özelliği de "proto" key'i ile ekler. Bu prototype alanı içinde hem o objeyi kurduğumuz Sınıfın kurucu fonksiyonuna hem de proto objesine erişebiliriz. Bu prototype özelliğini kullanarak hem sınıfa hem objeye ihtiyacımız olan fonksiyonu ekleyebiliriz. Bu kısımların detayları JavaScript'te nesneye yönelik programlama konusuna ait olduğu için kapsamı genişletmeden birkaç örnek vererek konuyu tamamlayalım:</p>
+                <p>Sınıfa Prototype yardımıyla fonksiyon eklemek:</p>
+                <p>// Sınıfa prototype yardımıyla fonksiyon eklemek
+                    <br>Insan.prototype.yeniFonksiyon = () => {console.log("Merhaba Kodluyoruz")}
+                    <br>const ayse = new Insan("ayşe",22);
+                    <br>ayse.yeniFonksiyon();
+                    <br>// Output : "Merhaba Kodluyoruz"
+                </p>
+                <p>Objeye prototype yardımıyla fonksiyon eklemek :</p>
+                <p>ayse.__proto__.enYeniFonksiyon = () => {console.log("Tekrar Merhaba Kodluyoruz!")}
+                    <br>ayse.enYeniFonksiyon();
+                    <br>// Output : "Tekrar Merhaba Kodluyoruz!"
+                </p>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+        crossorigin="anonymous"></script>
+    <script>
+        var person = {
+            name: "Rumeysa",
+            surname: "Turgut",
+            age: 23,
+            city: "Istanbul",
+            introduce: function () {
+                console.log(`My name is ${this.name} ${this.surname}, I'm ${this.age} yo.`);
+            },
+        };
+        console.log(person.introduce())
+    </script>
+    <script>
+        var person = {
+            name: "Rumeysa",
+            surname: "Turgut",
+            age: 23,
+            introduce: () => {
+                return `My name is ${this.name} ${this.surname}, I'm ${this.age} yo.`;
+            },
+        };
+        console.log(person.introduce()); // arrow functionlar this erişimine sahip değildir.Çıktıda özellikler undefined (tanımlanmamış) olarak gözükecektir.
+    </script>
+    <script>
+        var person1 = {
+            name: 'Rumeysa',
+            surname: 'Turgut',
+            age: 23,
+            introduce: () => {
+                return `My name is ${person1.name} ${person1.surname}, I'm ${person1.age} yo.`;
+            },
+        };
+        console.log(person1.introduce())
+        // Bir metodun arrow function söz dizimi kullanılarak yapılmak istendiği bir durumda özelliklere nesnenin ismiyle erişilebilir.
+    </script>
+    <script> person1.myCity = function() {
+        console.log(`I'm ${this.age} yo.`);
+    };
+    person1.myCity()
+    </script>
+    <script>
+        const fonksiyonAdi = () => {console.log("Merhaba Kodluyoruz")}
+        console.log(fonksiyonAdi.name);
+    </script>
+    <script>
+        function Insan(isim,yas){
+            this.isim = isim;
+            this.yas = yas;
+        }
+    </script>
+    <script>
+        const ali = new Insan("ali", 21);
+        console.log(ali.yas);
+    </script>
+    <script>
+        ali.yeniOzellik = "Sonradan eklenmiş bir özellik" ;
+        console.log(ali.yeniOzellik);
+        // "Sonradan eklenmiş bir özellik"
+    </script>
+    <script>
+        // Sınıfa prototype yardımıyla fonksiyon eklemek
+        Insan.prototype.yeniFonksiyon = () => {console.log("Merhaba Kodluyoruz")}
+        const ayse = new Insan("ayşe", 22);
+        ayse.yeniFonksiyon();
+        // Output : "Merhaba Kodluyoruz"
+    </script>
+    <script>
+        ayse.__proto__.enYeniFonksiyon = () => {console.log("Tekrar Merhaba Kodluyoruz!")}
+        ayse.enYeniFonksiyon();
+        // Output : "Tekrar Merhaba Kodluyoruz!"
+    </script>
+</body>
+
+</html>

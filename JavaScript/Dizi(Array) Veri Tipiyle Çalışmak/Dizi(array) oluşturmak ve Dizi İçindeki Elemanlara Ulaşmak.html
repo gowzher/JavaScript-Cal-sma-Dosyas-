@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dizi</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+</head>
+
+<body>
+  <div class="container mt-5">
+    <div class="row">
+      <div class="col-sm-8 offset-sm-2">
+        <h1>Dizi(Array) Oluşturmak ve Dizi İçindeki Elemanlara Ulaşmak</h1>
+        <p>Merhaba arkadaşlar,JavaScript'te array(dizi) tanımı birden çok value(değer) saklamamızı sağlar.Bu diziler
+          içinde string,number,boolean,object,tipinde veriler saklanabilir.Diziler de object(nesne) tipindedir.Bir dizi
+          oluşturmak için yapmamız gereken dizi ismini verip eşittir dedikten sonra köşeyi parantezler içinde dizi
+          elemanlarını yazmak.Her eleman arasında bir virgül koymamız gereklidir.</p>
+        <h3>Örneğin;</h3>
+        <p>let arr =[1,2,3];</p>
+        <p>burada ismi arr ve sadece number tipinde elemanları olan bir dizi tanımlamış olduk.Farklı bir örnek;</p>
+        <p>let arr = [1,2,"bir string ifade",false,{title:"kodluyoruz"}];</p>
+        <p>Burada farklı tiplere sahip elemanları tek bir dizi içinde saklamış olduk.Bir dizi içinde farklı bir
+          dizi(diziler) tanımlayabiliriz.Örneğin;</p>
+        <p>let arr = [1,2,3,["dört","beş","altı"],7,8,];</p>
+        <h2>Dizi İçerisindeki Elemanlara Erişim</h2>
+        <p>Artık bir dizi nasıl oluşturulur öğrendiğimize göre bu oluşturduğumuz dizinin elemanlarına nasıl ulaşırız ona
+          bakalım.Her dizi elemanının index değeri vardır.İlk elemanın index değeri 0 dır.Buna göre ikinci elemanın
+          index değeri 1 ve böylece devam eder.Bu index değerlerini kullanarak bizler dizi elemanlarına erişebiliriz.
+          <br> Örneğin;</p>
+        <p>Let arr = [1,2,3,"dört","beş"];<br>console.log( arr[3] ) ; <br>console.log( arr[0] ) ;</p>
+        <p>Burada console.log( arr[3] ) ; çıktı olarak dört değerini, console.log ( arr[0] ) ; ise 1 değerini bize
+          verecektir. Burada index değerini tek tek yazmak yerine bir for döngüsü yardımıyla dizi elemanlarına
+          erişebiliriz. <br>Örneğin;</p>
+        <p>let arr = [1,2,3,"dört","beş"] ;</p>
+        <p>for (let i = 0; i < arr.length; i++) { <br> console.log(arr[i]) ; <br> } </p>
+        <p>Burada arr.length ifadesi dizinin uzunluğunu number tipinde ifade eder. Bu örnekte dizi uzunluğu 5 .
+          <br>NOT:Dizi uzunluğunu için saymaya 1'den başlanır.</p>
+        <p>Eğer bir dizi içerisinde farklı bir dizi tanımlı ve bu içerideki dizi elemanlarına erişim sağlamak istiyorsak
+          ;</p>
+        <p>let arr = [1, 2, 3, ["dört", "beş" , "altı"], 7, 8; <br>console.log(arr[2][0]);</p>
+        <p>Burada console.log(arr[3][0]) : çıktı olarak dört yazacaktır. 3 içerideki dizinin index numarası ve 0 bu
+          dizinin ilk elemanını ifade eder. console.log( arr[4] ); çıktı olarak 7 verdiğine dikkat edelim. Dizi
+          prototipinde tanımlı foreach fonksiyonu yardımıyla da dizi elemanlarına erişilebilir.</p>
+        <p>let arr = [1, 2, 3, "dört", "beş"]; <br> arr.forEach((item, index) => { <br> console.log(item, index);
+          <br>});</p>
+        <p>Burada arrow function şeklinde yazılmış forEach metodu her bir dizi elemanı için çalıştırılır.item değeri
+          dizinin o anki elemanını tutar ve index değeri ise o anki elemanın index değeridir. Bu kodu çalıştırdığımızda
+          dizinin her elemanının aynı for döngüsünde olduğu gibi çıktısını görebiliriz.</p>
+        <h3>Array Nedir?</h3>
+        <p>Programlamanın temel amaçlarından birisi verileri saklamak ve manipüle edebilmektir. Arrays(diziler) bu işe
+          yaramaktadır. Array'lerde bir değişken (variabla) tanımlayarak birden fazla değeri (value) saklayabilir ve
+          onları daha sonra çeşitli metotlarla kullanabiliriz. Array oluşturmak için köşeli parantez kullanırız.
+          Oluşturulan array'de her bir değere "element"(eleman) denir.</p>
+        <p>let favoriArabalar = ["audi", "valvo", "mercedes"]</p>
+        <p>Bir array'in içine yazabileceğimiz elemanların veri tipi (data type) önemli değildir. Örneğin aynı array'de
+          bir string ile number değer olarak atanabilir</p>
+        <p>let randomDizi = [2021, "javaScript", true]</p>
+        <h3>Array İçindeki Elemanlara Ulaşmak</h3>
+        <p>Array içindeki bir elemana ulaşılmak istendiğinde yazılış sırasına göre çağrılmaktadır. Elemanların yazılış
+          sıralarını numaralandırmaya 0'dan başlarız. Bu demek oluyor ki bir array'e yazdığımız ilk elemanın (yani
+          birinci sırada yazdığımız eleman) numarası 0'dır. Elemana ulaşmak için önce dizinin değişken adı yazılır daha
+          sonra köşeli parantez açılarak elemanın numarası girilir.</p>
+        <p>let maramaraBolgesi = ["istanbul", "kocaeli", "sakarya", "bursa", "canakkale"]</p>
+
+        <p>marmaraBolgesi[0] =İstanbul marmaraBolgesi[1] = kocaeli marmaraBolgesi[2] = sakarya <br>
+          marmaraBolgesi[3] = bursa marmaraBolgesi[4] = canakkale</p>
+        <p>Yukarıda yaptığımız örnekte görüldüğü gibi dizinin içinde 5 tane eleman varken çağırdığımız son elemanımızın
+          numarası 4'tür. Bu demek oluyor ki ((dizideki toplam eleman sayısı)-1) bize dizinin son elemanını verir</p>
+        <p>O halde içinde kaç tane eleman olduğunu bilmediğimiz bir dizinin son elemanına ulaşmak için şu yöntemi
+          kullanabiliriz.</p>
+        <p>let aylar =["mart", "nisan", "mayis", "haziran", "temmuz"] let sonEleman = aylar[aylar.length - 1] <br>length
+          property'si bize array'in içindeki eleman sayısını verir.Ondan bir çıkarttığımızda ise son elemanın numarasını
+          elde etmiş oluruz. console.log(sonEleman) = "temmuz"</p>
+        <h3>Type Of Array</h3>
+        <p>Bir array'in veri tipi object'dir. typeof aylar = object</p>
+        <h3>Array'in Let Veya Const İle Deklara Edilmesi Arasındaki Farklar</h3>
+        <p>Array'leri tanımladığımız değişkenin let veya const ile deklara edilmesi arasında fark bulunmaktadır. Let ile
+          deklare ettiğimiz bir array daha sonra yeniden tanımlanabilir.</p>
+        <p>let gunler = ["pazartesi", "sali", "carsamba"] gunler =["cuma", "cumartesi", "pazar"] console.log(gunler);
+          ["cuma", "cumartesi", "pazar"] çıktısını alacağız. Çünkü let kullanarak oluşturduğumuz bir array yeniden
+          tanımlanabilir.</p>
+        <p>Yukarıda yaptığımız örneğin aynısını const ile yapmayı deneyelim const gunler = ["pazartesi", "sali",
+          "carsamba"] gunler =["cuma", "cumartesi", "pazar"] "TypeError:Assignment to constant variable" hatasını
+          alırız. Const ile deklare ettiğimiz bir array'i yeniden tayin edemyeceğimizi belirtmektedir.</p>
+        <p>const ile deklare ettiğimiz bir array yeniden tayin edilemese de içerisindeki elemanlara erişme ve değiştirme
+          noktasında let ile aynıdır</p>
+      </div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+    crossorigin="anonymous"></script>
+  <script>
+    let arr = [1, 2, 3, "dört", "beş"];
+
+    for (let i = 0; i < arr.length; i++) {
+      console.log(arr[i]);
+    }
+    let ar = [1, 2, 3, "dört", "beş"];
+    ar.forEach((item, index) => {
+      console.log(item, index);
+    });
+  </script>
+</body>
+
+</html>

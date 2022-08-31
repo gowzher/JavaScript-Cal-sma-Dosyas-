@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="tr">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Object</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-sm-8 offset-sm-2">
+                <h1>Object ve Array Destructuring Kullanımı Destructuring Nedir?</h1>
+                <p>Destructuring bir obje veya bir array içinden her bir elemanın alınıp bir değişken içine
+                    kaydedilmesi.</p>
+                <p>Bu şekilde bir objemiz olduğunu düşünelim;</p>
+                <p>const foo = { a:123, b: true}</p>
+                <p>Bu obje içinde a ve b değerlerini almak istersek foo.a; ve foo.b; yazarak erişebiliriz. Ama bu
+                    değerlere erişmek istediğimizde her seferinde foo mu yazmak zorundayız ? Elbette bunun da bir çözümü
+                    var, a ve b değerlerine bir lokal değişkene yazabiliriz bu sayede her seferinde foo yazmak zorunda
+                    kalmayız. Örneğin;</p>
+                <p>
+                    <br> const foo = { a:123, b:true }
+                    <br> const a = foo.a;
+                    <br> const b = foo.b;
+                </p>
+                <p>Ama eğer erişmek istediğimiz değer sayısı çok fazla olsa idi gerçekten çok uğraşmak durumunda kalırdık. İşte bu noktada destructuring bizim isimizi kısaltan bir işlev görür ve aynı işlemi şu şekilde yapabiliriz;</p>
+                <p>const foo = { a: 123, b: true }
+                    <br>const {a,b} = foo;
+                </p>
+                <p>Ama en önemlisi destructuring bir fonksiyonun bir objeyi parametre olarak alması sırasında çok kullanışlıdır. Yani fonksiyona parametre girerken de destructuring yapabiliriz;</p>
+                <p>const cikarma = ( { sayi1, sayi2 } ) => { 
+                    <br>// Bu satira dikkat
+                    <br>return sayi1 - sayi2;
+                    <br>}
+                    <br>const sayilar = {
+                    <br>sayi2: 3,
+                    <br>sayi1: 5
+                    <br>}
+                    <br>cikarma(sayilar); 
+                    <br>// sonuc 2
+                </p>
+                <p>Artık fonksiyon içinde devamlı <strong> sayilar.sayi1, sayilar.sayi2,</strong> diye tekrarlamamıza gerek yok ama çıkarma fonksiyonunun parametresine dikkat edin. orada süslü parantezler <strong>{}</strong> bir objeyi temsil etmez, destructuring işlemini temsil eder. Yani çıkarma fonksiyonuna gelen sayılar objesinin içinde <strong>sayi1</strong> ve <strong>sayi2</strong> property'leri bulunup parçalanıp fonksiyon içinde kullanılabilir hale gelecektir. Destructuring işlemi sırasında sıralama önemsizdir, yani fonksiyonu şu şekilde yazmış olsaydık da bir şey değişmeyecekti</p>
+                <p>const cikarma = ( { sayi2, sayi1 } ) => { 
+                    <br>// Siralama farklireturn sayi1 - sayi2;
+                    <br>}
+                </p>
+                <p>artık fonksiyon içinde obje propertyleri kullanılabilir</p>
+                <h3>Destructuring Yapan Fonksiyona Gönderilen Obje Eksik Property İçeriyor İse Ne Olacak ?</h3>
+                <p>Çıkarma işlemi için problem değil ama bölme işlemi için bu bir problem. Örneğin;</p>
+                <p>const bolme = ( { sayi1, sayi2} ) => {
+                    <br>return sayi1 / sayi2;
+                    <br>}
+                    <br>const sayilar = {
+                    <br>sayi1: 8 
+                    <br>// dikkat sayi1 gonderdik ama sayi2 unuttuk
+                    <br>}
+                    <br>bolme(sayilar); 
+                    <br>// NaN yani 'Not a Number' donecektir. 
+                </p>
+                <p>işte bu örnekte <strong>bolme</strong> fonksiyonunda güzelce destructuring yaptık, <strong>sayi1</strong> ve <strong>sayi2</strong>'yi parçalayıp birbirine böldük. Bölme işleminde sıralama önemli ama ayni zamanda ikinci sayı 0 veya hiçbir şey içermeyen <strong>null</strong> veya <strong>undefined</strong> olursa bölme işlemi tanımsız olur. Bu durumda da fonksiyon <strong>NaN</strong> döner</p>
+                <p>Fonksiyonu çağıran geliştiricinin böyle bir hata yapmasının önüne geçmek için fonksiyon içinde olmaz olmaz, mutlaka değer içermesi gereken değişkenlere <strong>default</strong> yani varsayılan bir değer atayabiliriz.</p>
+                <p>const bolme = ( { sayi1, sayi2 = 1} ) => { 
+                    <br>// default deger atadikreturn sayi1 / sayi2;
+                    <br>}
+                    <br>const sayilar = {
+                    <br>sayi1: 8 
+                    <br>// yine ikinci sayiyi unuttuk
+                    <br>}
+                    <br>bolme(sayilar); 
+                    <br>// ama bu sefer sonuc 8, NaN degil
+                </p>
+                <p>Burada yine ikince sayıyı unuttuk ama bu sefer destructuring sırasında olmazsa olmaz ikinci sayıya varsayılan olarak <strong>1</strong> değerini atadık. Artık göndermesek bile <strong>sayi2</strong> her zaman <strong>1</strong> olacaktır ve <strong>sayi1</strong>'in belirsiz bir sayıya bölünmesi hatasından kurtulmuş olacağız.</p>
+                <p>Peki Fazladan Gönderdiğimiz Bu Değerlere Ne Oluyor?</p>
+                <p>Destructuring sırasında açıkça belirlemediğimiz değer fonksiyon içinde erişilemez. Örneğin burada fonksiyon parametresinde <strong>sayi2</strong>'ye varsayılan değer atamayı geç komple destructure yapmayı unuttuk.</p>
+                <p>const bolme = ( { sayi1 } ) => { 
+                    <br>// dikkat sayi2 unutuldureturn sayi1 / sayi2;
+                    <br>}
+                    <br>const sayilar = {
+                    <br>sayi1: 8,
+                    <br>sayi2: 4
+                    <br>// ama sayi2 gonderdik
+                    <br>}
+                    <br>bolme(sayilar); 
+                    <br>// ReferenceError: sayi2 is not defined
+                </p>
+                <p>Bu durumda <strong>ReferenceError: sayi2 is not defined</strong> yani sayı iki tanımlanmamış diye bir hata alırız, çünkü fonksiyona <strong>sayi2</strong> göndersek bile fonksiyon içinnde <strong>sayi2</strong>ye olan erişimimizi tamamen kaybettik.</p>
+                <p>Bu durum bu örnekteki gibi iki tane değer içeren objelerde problem değil ama eğer obje birçok değer içeriyor ise bu hata çok kez yapılan bir hata. Bu noktada <strong>spreading operator</strong> imdadımıza yetişiyor.</p>
+                <p>Rest Operator</p>
+                <p>Örneğin fonksiyonumuz ikiden fazla değer alması gerekiyor ise ne olacak ? Örneğin bir toplama fonksiyonumuz var bu fonksiyon 5 sayıyı toplayacak.</p>
+                <p>const toplama = ({ sayi1, sayi2 }) => { 
+                    <br>// dikkat sadece 2 sayireturn sayi1 + sayi2 + sayi3 + sayi4 + sayi5;
+                    <br>}
+                    <br>const sayilar = {
+                    <br>sayi1: 8,
+                    <br>sayi2: 4,
+                    <br>sayi3: 7,
+                    <br>sayi4: 9,
+                    <br>sayi5: 11
+                    <br>}
+                    <br>toplama(sayilar); 
+                    <br>//ReferenceError: sayi3 is not defined
+                </p>
+                <p>Örneğin fonksiyona gönderdiğimiz obje 5 tane sayı içeriyor ama biz sadece ilk ikisini destructure yaptık. Bu durumda <strong>sayi3</strong> için bu şekilde hata alırız. <strong>ReferenceError: sayi3 is not defined</strong></p>
+                <p>Ama <strong>Rest Operator</strong> ile diyebiliriz ki <strong>sayi1</strong> ve <strong>sayi2</strong>'yi destructure yap. Bu sefer de diğer sayıları kaybederiz. Bu durumda spreading operator ile diyebiliriz ki tamam destructuring yap ama geri kalan diğer sayıları da bana ver.</p>
+                <p>const toplama = ({ sayi1, sayi2, ...args }) => {
+                    <br>let sonuc = sayi1 + sayi2;
+                    <br>for (let sayi in args){
+                    <br>sonuc += args[sayi];
+                    <br>}
+                    <br>return sonuc;
+                    <br>}
+                    <br>const sayilar = {
+                    <br>sayi1: 8,
+                    <br>sayi2: 4,
+                    <br>sayi3: 7,
+                    <br>sayi4: 9,
+                    <br>sayi5: 11
+                    <br>}
+                    <br>toplama(sayilar); 
+                    <br>// 39 doner
+                </p>
+                <p>Yani burada <strong>{sayi1, sayi2, ...args}</strong> ile diyoruz ki <strong>sayi1</strong> ve <strong>sayi2</strong> destructure olsun ama geri kalanlar <strong>args</strong> değişkende obje olarak kalsın yani args <strong>{ sayi3: 7, sayi4: 9, sayi5: 11 }</strong> şeklinde bir obje kalır ve bu obje destructuring'ten arta kalan değerleri içeren bir objedir.</p>
+                <p>Bir obje içindeki tüm değeri de <strong>for...in</strong> ile teker teker dolaşabilir. <strong>for...in</strong> şeklinde oluşturduğumuz döngü yani <strong>for ( let sayi in args )</strong> satiri der ki <strong>args</strong> içindeki tüm property'lerin <strong>key</strong>'lerini dön bana. Bu döngüdeki <strong>sayi</strong> değişken her bir property için bize <strong>sayi3, sayi4, sayi5 </strong> string anahtarını döner. Ama biz anahtar değil de değerleri almak istersek <strong>args[sayi]</strong> yazabiliriz. Bu bize teker teker <strong>7, 9, 11</strong> sayılarını dönecektir ve toplama işlemine bunu bir döngüde dahil edebiliriz.</p>
+                <p>Elbette gerçek hayat için mantıklı bir işlem değil bu ama spreading özelliğinin anlaşılması için böyle bir fonksiyon yazılabilir. Hatta <strong>for...in</strong> yerine <strong>map()</strong> veya <strong>reduce()</strong> fonksiyonları kullanarak bu örnek daha da iyi hale getirilebilir.</p>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
